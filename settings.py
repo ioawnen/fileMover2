@@ -1,4 +1,5 @@
 import json
+import os
 
 
 class SettingsIface(object):
@@ -20,8 +21,16 @@ class SettingsIface(object):
 class Settings:
     SETTINGS_FILE_PATH = 'settings.json'
 
-    def write_default_settings(self):
+    def __init__(self):
+        self.write_default_settings()
+
+    def settings_file_exists(self):
+        return os.path.exists(self.SETTINGS_FILE_PATH)
+
+    def write_default_settings(self, force_overwrite=False):
         """Writes default settings to file as JSON"""
+        if self.settings_file_exists() and not force_overwrite:
+            return
         settings_json = json.dumps(SettingsIface().__dict__)
         file = open(self.SETTINGS_FILE_PATH, 'w')
         file.write(settings_json)
