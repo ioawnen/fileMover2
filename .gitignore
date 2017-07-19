@@ -102,4 +102,4 @@ ENV/
 .idea/
 
 # fileMover stuff
-settings.json
+/*.json
