@@ -6,6 +6,7 @@ class SettingsIface(object):
     def __init__(self, d=None):
         # SETTINGS DEFAULTS
         self.move_tasks_file_path = 'move_tasks.json'
+        self.log_level = 2
         # DEFAULTS END
         if d:
             for a, b in d.items():
