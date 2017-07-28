@@ -1,16 +1,32 @@
 """This class is basically an interface for os library functions."""
 
 import os
+from logging import *
+import shutil
+
 
 def file_exists(path) -> bool:
     return os.path.exists(path)
 
-def move_file(target, destination):
-    os.rename(target, destination)
+
+def move_file(target_dir, destination_dir, filename):
+    src = os.path.join(target_dir, filename)
+    dst = os.path.join(destination_dir, filename)
+
+    out("Moving {0} to {1}".format(src, dst), 2)
+
+    try:
+        os.makedirs(destination_dir)
+        out("Destination directory did not exist, created one.", 4)
+    except OSError:
+        pass
+
+    shutil.move(src, dst)
+
 
 def change_file_permissions(target, mode):
     os.chmod(target, mode)
 
 
-def get_all_files(path, follow_symlinks=False) -> tuple:
+def get_all_files(path, follow_symlinks=False):
     return os.walk(path, followlinks=follow_symlinks)

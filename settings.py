@@ -1,5 +1,6 @@
 import json
 import os
+import logging
 
 
 class SettingsIface(object):
@@ -32,6 +33,7 @@ class Settings:
         """Writes default settings to file as JSON"""
         if self.settings_file_exists() and not force_overwrite:
             return
+
         settings_json = json.dumps(SettingsIface().__dict__)
         file = open(self.SETTINGS_FILE_PATH, 'w')
         file.write(settings_json)
