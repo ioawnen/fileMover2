@@ -9,7 +9,7 @@ def get_matching_files(move_task: MoveTaskIface) -> list:
     matches = []
 
     for root, dirs, files in get_all_files(move_task.search_path):
-        out("Found {0} files in {1} subdirectories".format(len(files), len(dirs)), 2)
+        out("Found {0} files in {1} subdirectories".format(len(files), len(dirs)), 3)
         for file in files:
             if re.search(pattern, file):
                 matches.append((root, file))
