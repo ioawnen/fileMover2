@@ -6,5 +6,4 @@ language: python
     - pip install -r requirements.txt
   script:
     - "python fileMover.py"
-    - pytest
   
