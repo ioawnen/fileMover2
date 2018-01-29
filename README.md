@@ -1,5 +1,6 @@
 fileMover2
 ==========
+[![Build Status](https://travis-ci.org/ioawnen/fileMover2.svg?branch=develop)](https://travis-ci.org/ioawnen/fileMover2)
 
 A less shitty version of fileMover, a script for moving files for lazy shits with too many downloads.
 
