@@ -3,8 +3,8 @@ language: python
     - "3.6"
     - "nightly"
   install:
-    - pip install .
     - pip install -r requirements.txt
   script:
+    - "python fileMover.py"
     - pytest
   
