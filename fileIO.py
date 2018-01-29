@@ -1,7 +1,7 @@
 """This class is basically an interface for os library functions."""
 
 import os
-from logging import *
+import logging
 import shutil
 
 
@@ -13,11 +13,11 @@ def move_file(target_dir, destination_dir, filename):
     src = os.path.join(target_dir, filename)
     dst = os.path.join(destination_dir, filename)
 
-    out("Moving {0} to {1}".format(src, dst), 2)
+    logging.out("Moving {0} to {1}".format(src, dst), 2)
 
     try:
         os.makedirs(destination_dir)
-        out("Destination directory did not exist, created one.", 4)
+        logging.out("Destination directory did not exist, created one.", 4)
     except OSError:
         pass
 
