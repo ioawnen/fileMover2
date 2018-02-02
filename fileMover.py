@@ -1,21 +1,25 @@
-import re
+import re, sre_constants
 from fileIO import *
 from moveTasks import MoveTasks, MoveTaskIface
 import logging
 
 
 def get_matching_files(move_task: MoveTaskIface) -> list:
-    pattern = re.compile(move_task.filename_regex)
     matches = []
 
-    for root, dirs, files in get_all_files(move_task.search_path):
-        logging.out("Found {0} files in {1} subdirectories".format(len(files), len(dirs)), 3)
-        for file in files:
-            if re.search(pattern, file):
-                matches.append((root, file))
+    try:
+        pattern = re.compile(move_task.filename_regex)
+
+        for root, dirs, files in get_all_files(move_task.search_path):
+            logging.out("Found {0} files in {1} subdirectories".format(len(files), len(dirs)), 3)
+            for file in files:
+                if re.search(pattern, file):
+                    matches.append((root, file))
+
+    except sre_constants.error as exc:
+        logging.out("Error occured while matching '{0}'. Skipping. Error: '{1}'".format(move_task.filename_regex, exc), 0);
 
     return matches
-
 
 def perform_check():
     # STEP 1: GET ALL MOVE TASKS
