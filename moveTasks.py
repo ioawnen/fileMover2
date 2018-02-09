@@ -27,7 +27,8 @@ class MoveTasks:
     def __init__(self):
         self.write_default_move_tasks()
 
-    def move_file_exists(self):
+    @staticmethod
+    def move_file_exists():
         return os.path.exists(Settings().get_settings().move_tasks_file_path)
 
     def write_default_move_tasks(self, force_overwrite=False):
@@ -35,13 +36,14 @@ class MoveTasks:
             logging.out("Move tasks file found / force_overwrite not enabled, skipping step.", 4)
             return
         logging.out("Move tasks file not found / force_overwrite enabled, creating default as {0}"
-            .format(Settings().get_settings().move_tasks_file_path), 3)
+                    .format(Settings().get_settings().move_tasks_file_path), 3)
         move_tasks_json = json.dumps([MoveTaskIface().__dict__])
         file = open(Settings().get_settings().move_tasks_file_path, 'w')
         file.write(move_tasks_json)
         file.close()
 
-    def get_move_tasks(self) -> list:
+    @staticmethod
+    def get_move_tasks() -> list:
         move_tasks_json = open(Settings().get_settings().move_tasks_file_path, 'r').read()
         move_tasks = json.loads(move_tasks_json)
         logging.out("Tasks found: ", 3)

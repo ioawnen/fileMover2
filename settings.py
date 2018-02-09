@@ -44,9 +44,8 @@ class Settings:
 
     def get_settings(self) -> SettingsIface:
         """Returns user settings from file cast into a SettingsIface object"""
-
         try:
             settings_json = open(self.SETTINGS_FILE_PATH, 'r').read()
             return SettingsIface(json.loads(settings_json))
-        except FileNotFoundError as exc:
+        except FileNotFoundError:
             logging.out('Could not get settings. Does the file exist?', 0, True)

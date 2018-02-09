@@ -1,4 +1,5 @@
-import re, sre_constants
+import re
+import sre_constants
 from fileIO import *
 from moveTasks import MoveTasks, MoveTaskIface
 import logging
@@ -17,9 +18,11 @@ def get_matching_files(move_task: MoveTaskIface) -> list:
                     matches.append((root, file))
 
     except sre_constants.error as exc:
-        logging.out("Error occured while matching '{0}'. Skipping. Error: '{1}'".format(move_task.filename_regex, exc), 0);
+        logging.out("Error occurred while matching '{0}'. Skipping. Error: '{1}'"
+                    .format(move_task.filename_regex, exc), 0)
 
     return matches
+
 
 def perform_check():
     # STEP 1: GET ALL MOVE TASKS
@@ -29,8 +32,8 @@ def perform_check():
     # STEP 2: WORK EACH TASK
     for move_task in move_tasks:
         move_task = MoveTaskIface(move_task)
-        logging.out("Working task: {0} {1} -> {2}".format(move_task.search_path, move_task.filename_regex, move_task.save_path),
-            2)
+        logging.out("Working task: {0} {1} -> {2}"
+                    .format(move_task.search_path, move_task.filename_regex, move_task.save_path), 2)
 
         # STEP 3: GET FILES FOR TASK, MOVE EACH
         for path, file in get_matching_files(move_task):
