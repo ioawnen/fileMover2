@@ -7,11 +7,11 @@ from settings import Settings
 colorama.init(autoreset=True)
 
 LOG_LEVELS = [
-    Fore.LIGHTRED_EX + "ERROR  ",
-    Fore.LIGHTYELLOW_EX + "WARNING",
-    Fore.LIGHTCYAN_EX + "INFO   ",
-    Fore.LIGHTMAGENTA_EX + "LOG    ",
-    Fore.LIGHTGREEN_EX + "SILLY  "
+    Fore.LIGHTRED_EX +      "ERROR  ",
+    Fore.LIGHTYELLOW_EX +   "WARNING",
+    Fore.LIGHTCYAN_EX +     "LOG    ",
+    Fore.LIGHTMAGENTA_EX +  "INFO   ",
+    Fore.LIGHTGREEN_EX +    "SILLY  "
 ]
 
 
